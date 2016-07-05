@@ -2,14 +2,14 @@
 
 ## General
 
-leihs is a web-based system to manage the circulation of items within an 
-organization or institution. In our case, we use it to keep track of who uses 
+leihs is a web-based system to manage the circulation of items within an
+organization or institution. In our case, we use it to keep track of who uses
 our cameras, lighting equipment, speakers, microphones etc.
 
 ## Potential corruption of data in older leihs versions
 
-There is a potential corruption of pricing data in leihs between versions 
-3.13.0 and 3.29.0. If you have been running one of those versions for any 
+There is a potential corruption of pricing data in leihs between versions
+3.13.0 and 3.29.0. If you have been running one of those versions for any
 length of time, please [read our advisory](http://blog.zhdk.ch/leihs/2015/06/30/potential-corruption-of-some-pricing-data-in-leihs-versions-between-3-13-0-and-3-29-0/).
 
 
@@ -63,7 +63,11 @@ leihs is (C) Zürcher Hochschule der Künste (Zurich University of the Arts)
 
 leihs is Free Software under the GNU General Public License (GPL) v3, see the included LICENSE file for license details.
 
-Visit our main website at http://www.zhdk.ch and the IT center 
+Visit our main website at http://www.zhdk.ch and the IT center
 at http://itz.zhdk.ch
 
 [![alt text](https://github.com/leihs/leihs/raw/master/doc/images/zhdk_logo.png "ZHdK logo")](http://www.zhdk.ch)
+
+
+
+
