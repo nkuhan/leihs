@@ -71,8 +71,8 @@ Feature: Delegation
     Given I am Pius
     And I search for 'Julie'
     When Julie is in a delegation
-    Then I see all results for Julie or the delegation named Julie
-    And I see all delegations Julie is a member of
+    Then I see all results in the users box for users matching Julie
+    And I see all results in delegations box for delegations matching Julie or delegations having members matching Julie
 
   @personas @javascript
   Scenario: Suspended users can't submit orders
