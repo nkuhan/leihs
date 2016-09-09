@@ -142,6 +142,16 @@ Given(/^enough data for "(.*?)" having "(.*?)" exists$/) do |subsection, search_
         user = FactoryGirl.create(:user, lastname: make_string.call)
         FactoryGirl.create(:access_right, user: user, inventory_pool: @current_inventory_pool, role: 'customer')
         user
+      when 'Contracts'
+        user = FactoryGirl.create(:user, lastname: make_string.call)
+        FactoryGirl.create(:access_right, user: user, inventory_pool: @current_inventory_pool, role: 'customer')
+        FactoryGirl.create(:closed_contract, user: user, inventory_pool: @current_inventory_pool)
+        user
+      when 'Orders'
+        user = FactoryGirl.create(:user, lastname: make_string.call)
+        FactoryGirl.create(:access_right, user: user, inventory_pool: @current_inventory_pool, role: 'customer')
+        FactoryGirl.create(:reservation, user: user, inventory_pool: @current_inventory_pool, status: :submitted)
+        user
       end
   end
 end
@@ -168,7 +178,7 @@ end
 Then(/^I see all the entries matching "(.*?)" in the "(.*?)"$/) do |search_string, subsection|
   @results.each do |r|
     case subsection
-    when 'Models', 'Software', 'Users'
+    when 'Models', 'Software', 'Users', 'Contracts', 'Orders'
       find '.row.line', text: r.name
     when 'Items', 'Licenses', 'Options'
       find '.row.line', text: r.inventory_code

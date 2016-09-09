@@ -81,5 +81,5 @@ Feature: Search
       | Licenses   |
       | Options    |
       | Users      |
-      # | Contracts  |
-      # | Orders     |
+      | Contracts  |
+      | Orders     |
