@@ -62,3 +62,24 @@ Feature: Search
       | Retired      |
       | Incomplete   |
       | Unborrowable |
+
+  @personas @javascript @browser
+  Scenario Outline: Checking the subsection tabs
+    Given I am Mike
+    And enough data for "<subsection>" having "search string" exists
+    When I search globally for "search string"
+    Then the search results for "search string" are displayed
+    When I click on the tab named "<subsection>"
+    Then the first page of results is shown
+    And I scroll to the end of the list
+    Then I see all the entries matching "search string" in the "<subsection>"
+    Examples:
+      | subsection |
+      | Models     |
+      | Software   |
+      | Items      |
+      | Licenses   |
+      | Options    |
+      | Users      |
+      # | Contracts  |
+      # | Orders     |
