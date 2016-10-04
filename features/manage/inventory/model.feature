@@ -131,7 +131,6 @@ Feature: Model
     | object   |
     | model    |
     | software |
-    | item     |
 
   @javascript @personas
   Scenario Outline: Preventing deletion of a model

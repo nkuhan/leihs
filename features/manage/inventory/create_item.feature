@@ -178,3 +178,11 @@ Feature: Create item
     | Facility Management   |
     | IT/Software           |
     | Durch Kunde beschafft |
+
+  Scenario: Create attachments
+    Given I add or edit an item
+    Then I add one or more attachments
+    And I can view an attachment when klicking on the filename
+    And I can also remove attachments again
+    And I save
+    Then the attachments are saved
