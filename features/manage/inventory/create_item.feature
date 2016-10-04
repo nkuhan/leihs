@@ -42,6 +42,7 @@ Feature: Create item
       | IMEI-Number                |
       | Name                       |
       | Note                       |
+      | Attachment                 |
       | - Location -               |
       | Building                   |
       | Room                       |
@@ -131,6 +132,8 @@ Feature: Create item
       | IMEI-Number            |              | Test IMEI number    |
       | Name                   |              | Test name           |
       | Note                   |              | Test note           |
+      # Have I added the correct value for the line "attachment"?
+      | Attachment             | file         | filename.pdf        |
       | Building               | autocomplete | None                |
       | Room                   |              | Test room           |
       | Shelf                  |              | Test shelf          |

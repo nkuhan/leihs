@@ -123,6 +123,7 @@ Feature: Model
   Scenario Outline: Create attachments
     Given I add or edit a <object>
     Then I add one or more attachments
+    And I can view an attachment when klicking on the filename
     And I can also remove attachments again
     And I save
     Then the attachments are saved
@@ -130,6 +131,7 @@ Feature: Model
     | object   |
     | model    |
     | software |
+    | item     |
 
   @javascript @personas
   Scenario Outline: Preventing deletion of a model

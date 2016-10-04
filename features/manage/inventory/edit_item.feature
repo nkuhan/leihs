@@ -41,6 +41,7 @@ Feature: Editing an item
       | IMEI-Number                |
       | Name                       |
       | Note                       |
+      | Attachment                 |
       | - Location -               |
       | Building                   |
       | Room                       |
@@ -124,6 +125,7 @@ Feature: Editing an item
       | IMEI-Number            |              | Test IMEI number    |
       | Name                   |              | Test name           |
       | Note                   |              | Test note           |
+      | Attachment             | file         | filename2.jpg       |
       | Building               | autocomplete | None                |
       | Room                   |              | Test room           |
       | Shelf                  |              | Test shelf          |
