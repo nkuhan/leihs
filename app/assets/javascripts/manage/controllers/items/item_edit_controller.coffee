@@ -1,4 +1,4 @@
-class window.App.ItemEditController extends Spine.Controller
+class window.App.ItemEditController extends App.UploadController
 
   elements:
     "#flexible-fields": "flexibleFields"
