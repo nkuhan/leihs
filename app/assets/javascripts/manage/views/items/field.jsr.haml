@@ -32,6 +32,11 @@
       {{jed 'assign highest available'/}}
   {{/if}}
 
+  {{if ~field.id == 'attachments'}}
+  .list-of-lines.even.padding-bottom-xxs
+    {{partial 'manage/views/items/fields/writeable/partials/uploaded_attachment' ~itemData.attachments/}}
+  {{/if}}
+
 :coffeescript
   $(document).ready ->
     if !window.defined_once
