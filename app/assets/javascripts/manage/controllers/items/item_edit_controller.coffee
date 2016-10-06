@@ -19,6 +19,10 @@ class window.App.ItemEditController extends Spine.Controller
       itemType: @itemType
       writeable: true
       hideable: true
+    observer = new MutationObserver =>
+      if @el.find("#attachments")[0]
+        new App.ItemAttachmentsController {el: @el.find("#attachments"), item: @item}
+    observer.observe @el.find("#flexible-fields")[0], childList: true
 
   save: =>
     if @flexibleFieldsController.validate()

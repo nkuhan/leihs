@@ -51,4 +51,5 @@
       el: $("#edit-item-view")
       itemData: #{@item.to_json(:include => [:inventory_pool, :location, :model, :owner, :supplier, { attachments: { methods: :public_filename }}])}
       itemType: "#{@item.type.downcase}"
+      item: new App.Item #{@item.to_json}
       writeable: true
