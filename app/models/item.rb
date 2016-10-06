@@ -43,6 +43,8 @@ class Item < ActiveRecord::Base
           -> { where(returned_date: nil) },
           class_name: 'Reservation')
 
+  has_many :attachments, dependent: :destroy
+
   store :properties
 
   ####################################################################
