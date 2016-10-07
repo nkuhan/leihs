@@ -19,16 +19,24 @@ class window.App.ItemEditController extends App.FormWithUploadController
       writeable: true
       hideable: true
       callback: =>
-        @attachmentsController = new App.ItemAttachmentsController {el: @el.find("#attachments"), item: @item}
+        @attachmentsController = new App.ItemAttachmentsController {el: @el.find("#attachments")}
 
   save: =>
     if @flexibleFieldsController.validate()
       $.ajax
-        url: @item.url()
+        url: @url
         data: @itemForm.serializeArray()
-        type: "PUT"
+        type: @method
+    else
+      do @hideLoading
 
   done: (data) =>
+    # depending if used in new or edit template
+    # item is available from start or is created on save thus
+    # have to be set and the upload url with the item id too
+    @item ?= new App.Item(data)
+    @attachmentsController.setUrl(@item)
+
     @attachmentsController.upload =>
       @finish(data.redirect_url)
 
@@ -46,9 +54,11 @@ class window.App.ItemEditController extends App.FormWithUploadController
     if @flexibleFieldsController.validate()
       @copyInput.prop "disabled", false
       $.ajax
-        url: @item.url()
+        url: @url
         data: @itemForm.serializeArray()
-        type: "PUT"
+        type: @method
+    else
+      do @hideLoading
 
   showAllFields: ->
     $.ajax

@@ -53,3 +53,5 @@
       itemType: "#{@item.type.downcase}"
       item: new App.Item #{@item.to_json}
       writeable: true
+      url: "#{manage_update_item_path(@item)}"
+      method: "PUT"
