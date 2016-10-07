@@ -6,7 +6,7 @@ class window.App.ItemEditController extends App.FormWithUploadController
     "input[name='copy']": "copyInput"
 
   events: 
-    "click #item-save-and-copy": "saveAndCopy"
+    "click #item-save-and-copy": "submit"
     "click #show-all-fields": "showAllFields"
     "click [data-type='remove-field']": "removeField"
 
@@ -28,20 +28,27 @@ class window.App.ItemEditController extends App.FormWithUploadController
         data: @itemForm.serializeArray()
         type: "PUT"
 
-  done: =>
+  done: (data) =>
     @attachmentsController.upload =>
-      do @finish
+      @finish(data.redirect_url)
 
-  finish: =>
+  finish: (redirectUrl = null) =>
     if @attachmentsController.uploadErrors.length
       @setupErrorModal(@item)
     else
-      window.location = App.Inventory.url()+"?flash[success]=#{_jed('Item saved')}"
+      url = redirectUrl ? App.Inventory.url()
+      window.location = "#{url}?flash[success]=#{_jed('Item saved')}"
+
+  submit: (event) =>
+    super(event, @saveAndCopy)
 
   saveAndCopy: =>
     if @flexibleFieldsController.validate()
       @copyInput.prop "disabled", false
-      @itemForm.submit()
+      $.ajax
+        url: @item.url()
+        data: @itemForm.serializeArray()
+        type: "PUT"
 
   showAllFields: ->
     $.ajax

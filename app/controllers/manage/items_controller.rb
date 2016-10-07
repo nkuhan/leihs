@@ -87,12 +87,17 @@ class Manage::ItemsController < Manage::ApplicationController
     respond_to do |format|
       format.json do
         if saved
-          render(status: :ok,
-                 json: @item.to_json(include: [:inventory_pool,
-                                               :location,
-                                               :model,
-                                               :owner,
-                                               :supplier]))
+          if params[:copy]
+            render(status: :ok,
+                   json: { redirect_url: manage_copy_item_path(current_inventory_pool, @item.id) })
+          else
+            render(status: :ok,
+                   json: @item.to_json(include: [:inventory_pool,
+                                                 :location,
+                                                 :model,
+                                                 :owner,
+                                                 :supplier]))
+          end
         else
           if @item
             render text: @item.errors.full_messages.uniq.join(', '),
@@ -100,20 +105,6 @@ class Manage::ItemsController < Manage::ApplicationController
           else
             render json: {}, status: :not_found
           end
-        end
-      end
-      format.html do
-        if saved
-          if params[:copy]
-            redirect_to manage_copy_item_path(current_inventory_pool, @item.id),
-                        flash: { success: _('Item saved.') }
-          else
-            redirect_to manage_inventory_path(current_inventory_pool),
-                        flash: { success: _('Item saved.') }
-          end
-        else
-          flash[:error] = @item.errors.full_messages.uniq.join(', ')
-          render action: :edit
         end
       end
     end
