@@ -1,12 +1,11 @@
-class window.App.ItemEditController extends App.UploadController
+class window.App.ItemEditController extends App.FormWithUploadController
 
   elements:
     "#flexible-fields": "flexibleFields"
-    "#item-form": "itemForm"
+    "#form": "itemForm"
     "input[name='copy']": "copyInput"
 
   events: 
-    "click #item-save": "save"
     "click #item-save-and-copy": "saveAndCopy"
     "click #show-all-fields": "showAllFields"
     "click [data-type='remove-field']": "removeField"
@@ -19,14 +18,25 @@ class window.App.ItemEditController extends App.UploadController
       itemType: @itemType
       writeable: true
       hideable: true
-    observer = new MutationObserver =>
-      if @el.find("#attachments")[0]
-        new App.ItemAttachmentsController {el: @el.find("#attachments"), item: @item}
-    observer.observe @el.find("#flexible-fields")[0], childList: true
+      callback: =>
+        @attachmentsController = new App.ItemAttachmentsController {el: @el.find("#attachments"), item: @item}
 
   save: =>
     if @flexibleFieldsController.validate()
-      @itemForm.submit()
+      $.ajax
+        url: @item.url()
+        data: @itemForm.serializeArray()
+        type: "PUT"
+
+  done: =>
+    @attachmentsController.upload =>
+      do @finish
+
+  finish: =>
+    if @attachmentsController.uploadErrors.length
+      @setupErrorModal(@item)
+    else
+      window.location = App.Inventory.url()+"?flash[success]=#{_jed('Item saved')}"
 
   saveAndCopy: =>
     if @flexibleFieldsController.validate()

@@ -44,6 +44,7 @@ class Item < ActiveRecord::Base
           class_name: 'Reservation')
 
   has_many :attachments, dependent: :destroy
+  accepts_nested_attributes_for :attachments, allow_destroy: true
 
   store :properties
 

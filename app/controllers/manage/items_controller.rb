@@ -143,6 +143,21 @@ class Manage::ItemsController < Manage::ApplicationController
     head status: :ok
   end
 
+  def upload
+    @item = fetch_item_by_id
+    params[:files].each do |file|
+      if params[:type] == 'attachment'
+        attachment = Attachment.new(file: file,
+                                    filename: file.original_filename,
+                                    item_id: @item.id)
+        attachment.save
+      else
+        raise 'Unknown attachment type'
+      end
+    end
+    head status: :ok
+  end
+
   private
 
   def fetch_item_by_id

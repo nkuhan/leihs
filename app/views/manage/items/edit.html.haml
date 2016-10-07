@@ -19,7 +19,7 @@
           = link_to _('Cancel'), :back, class: 'button grey'
 
           .multibutton
-            %button#item-save.button.green
+            %button#save.button.green{:autocomplete => :off}
               = _("Save %s") % ( @item.type == "License" ? _("License") : _("Item") )
             .dropdown-holder.inline-block
               .button.green.dropdown-toggle
@@ -34,7 +34,7 @@
 
       #notifications.padding-vertical-m= render :partial => "notifications"
 
-      = form_tag manage_update_item_path(current_inventory_pool, @item), method: :put, id: "item-form", class: "overflow-hidden" do
+      %form#form
         %input{:type => :hidden, :name => "copy", :disabled => :disabled}
 
         #flexible-fields
