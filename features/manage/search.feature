@@ -45,11 +45,19 @@ Feature: Search
     Given I am Mike
     And there exists a closed contract with an item, for which an other inventory pool is responsible and owner
     When I search globally after this item with its inventory code
+<<<<<<< HEAD
     Then I see the items container
     And the items container shows the item line with the following information:
     |Inventory Code|
     |Model name|
     |Responsible inventory pool|
+=======
+    Then I see the item in the items container
+    And the items container shows the item line with the following information:
+    | Inventory Code             |
+    | Model name                 |
+    | Responsible inventory pool |
+>>>>>>> 2e6bb0cedd699b4d711f84d7b682fe65445cf57c
     And I don't see the button group on the item line
     And I hover over the list of items on the contract line
     Then I see in the tooltip the model of this item
