@@ -132,7 +132,6 @@ Feature: Create item
       | IMEI-Number            |              | Test IMEI number    |
       | Name                   |              | Test name           |
       | Note                   |              | Test note           |
-      # Have I added the correct value for the line "attachment"?
       | Attachment             | file         | filename.pdf        |
       | Building               | autocomplete | None                |
       | Room                   |              | Test room           |
@@ -179,10 +178,15 @@ Feature: Create item
     | IT/Software           |
     | Durch Kunde beschafft |
 
-  Scenario: Create attachments
-    Given I add or edit an item
+  Scenario Outline: Create and view attachments
+    Given I am <user>
+    Given I add or edit an <object>
     Then I add one or more attachments
     And I can view an attachment when klicking on the filename
     And I can also remove attachments again
     And I save
     Then the attachments are saved
+    Examples:
+      | user      | object  |
+      | Mike      | item    |
+      | Pius      | licenses|

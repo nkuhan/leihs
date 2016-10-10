@@ -28,6 +28,7 @@ Feature: Copy item
       | Move                   | select       | sofort entsorgen    |
       | Name                   |              | Test name           |
       | Note                   |              | Test note           |
+      | Attachment             | file         | filename.jpg        |
       | Project Number         |              | Test number         |
       | Relevant for inventory | select       | Yes                 |
       | Responsible department | autocomplete | A-Ausleihe          |
@@ -51,6 +52,7 @@ Feature: Copy item
     | Inventory Code |
     | Name           |
     | Serial Number  |
+    | Attachment     |
     And the inventory code is already filled in
     When I save
     Then the copied item is saved

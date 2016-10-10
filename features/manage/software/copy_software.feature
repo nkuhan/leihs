@@ -7,6 +7,7 @@ Feature: Copying software
   @personas @javascript @browser
   Scenario: Copying software
     Given a software license exists
+    And this software license contains an attachment
     When I copy an existing software license
     Then it opens the edit view of the new software license
     And the title is labeled as "Create new software license"
@@ -34,6 +35,7 @@ Feature: Copying software
       | Maintenance expiration |
       | Currency               |
       | Price                  |
+    And the attachment has not been copied to the new software license
 
   @personas @javascript @browser
   Scenario: Where can software be copied
