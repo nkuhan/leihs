@@ -39,9 +39,10 @@ class Manage::ItemsController < Manage::ApplicationController
     respond_to do |format|
       format.json do
         if saved
-          if params[:copy].present?
+          if params[:copy]
             render(status: :ok,
-                   json: { redirect_url: manage_copy_item_path(current_inventory_pool, @item.id) })
+                   json: { id: @item.id,
+                           redirect_url: manage_copy_item_path(current_inventory_pool, @item.id) })
           else
             render(status: :ok,
                    json: @item.to_json(include: [:inventory_pool,

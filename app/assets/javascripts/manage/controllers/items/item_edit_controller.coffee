@@ -5,8 +5,8 @@ class window.App.ItemEditController extends App.FormWithUploadController
     "#form": "itemForm"
     "input[name='copy']": "copyInput"
 
-  events: 
-    "click #item-save-and-copy": "submit"
+  events:
+    "click #item-save-and-copy": "submitCopy"
     "click #show-all-fields": "showAllFields"
     "click [data-type='remove-field']": "removeField"
 
@@ -34,7 +34,7 @@ class window.App.ItemEditController extends App.FormWithUploadController
     # depending if used in new or edit template
     # item is available from start or is created on save thus
     # have to be set and the upload url with the item id too
-    @item ?= new App.Item(data)
+    @item ?= new App.Item(id: data.id) # using only id, as some other attribute makes problem
     @attachmentsController.setUrl(@item)
 
     @attachmentsController.upload =>
@@ -47,8 +47,10 @@ class window.App.ItemEditController extends App.FormWithUploadController
       url = redirectUrl ? App.Inventory.url()
       window.location = "#{url}?flash[success]=#{_jed('Item saved')}"
 
-  submit: (event) =>
-    super(event, @saveAndCopy)
+  submit: (event, saveAction = @save) =>
+    super(event, saveAction)
+
+  submitCopy: (event) => @submit(event, @saveAndCopy)
 
   saveAndCopy: =>
     if @flexibleFieldsController.validate()

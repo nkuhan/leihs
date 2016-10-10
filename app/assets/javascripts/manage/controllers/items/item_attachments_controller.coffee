@@ -8,4 +8,4 @@ class window.App.ItemAttachmentsController extends App.UploadController
     @templatePath = "manage/views/items/fields/writeable/partials/attachment_inline_entry"
     new App.InlineEntryRemoveController {el: @el}
 
-  setUrl: (item) -> @url = item.url("upload/#{@type}")
+  setUrl: (item) => @url = item.url("upload/#{@type}")
