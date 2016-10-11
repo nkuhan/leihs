@@ -43,8 +43,9 @@ Feature: Search
   @javascript @personas @browser
   Scenario: Displaying items from another inventory pool in closed contracts
     Given I am Mike
+    Given I add or edit an item
     And there exists a closed contract with an item, for which an other inventory pool is responsible and owner
-    When I search globally after this item with its inventory code
+    When I search globally after this item with its inventory code or its name
     Then I see the item in the items container
     And the items container shows the item line with the following information:
     | Inventory Code             |
@@ -52,7 +53,7 @@ Feature: Search
     | Responsible inventory pool |
     And I don't see the button group on the item line
     And I hover over the list of items on the contract line
-    Then I see in the tooltip the model of this item
+    Then I see in the tooltip the model or Software of this item
 
   @personas @javascript @browser @problematic
   Scenario Outline: Showing items' problems in global search
