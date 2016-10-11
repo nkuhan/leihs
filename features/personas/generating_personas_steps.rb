@@ -413,7 +413,7 @@ end
 Given(/^the model "(.*?)" has (\d+) attachments?$/) do |model_name, attachment_quantity|
   model = Model.find_by_name model_name
   attachment_quantity.to_i.times do
-    model.attachments << FactoryGirl.create(:attachment)
+    FactoryGirl.create(:attachment, model: model)
   end
 end
 
@@ -463,7 +463,7 @@ end
 Given(/^the software "(.*?)" has from (\d+) to (\d+) attachments$/) do |software_name, lower_border, upper_border|
   software = Software.find_by_name software_name
   rand(lower_border.to_i..upper_border.to_i).times do
-    software.attachments << FactoryGirl.create(:attachment)
+    FactoryGirl.create(:attachment, model: software)
   end
 end
 
