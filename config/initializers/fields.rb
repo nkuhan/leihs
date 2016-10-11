@@ -433,8 +433,7 @@ if ActiveRecord::Base.connection.tables.include?('fields')
           type: "attachment",
           target_type: "item",
           group: "General Information",
-          permissions: {role: :inventory_manager, owner: true},
-          forPackage: true
+          permissions: {role: :inventory_manager, owner: true}
       }
   ]
 

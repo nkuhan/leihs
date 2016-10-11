@@ -14,7 +14,7 @@ class Attachment < ActiveRecord::Base
     content_type: %r{^(image\/(png|gif|jpeg)|application\/pdf)}
 
   validate do
-    unless model and item
+    unless model or item
       errors.add \
         :base,
         _('Attachment must be belong to model or item')
