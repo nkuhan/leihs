@@ -179,7 +179,7 @@ Feature: Create item
     | Durch Kunde beschafft |
 
   Scenario Outline: Create and view attachments
-    Given I am <user>
+    Given I am Mike
     Given I add or edit an <object>
     Then I add one or more attachments
     And I can view an attachment when klicking on the filename
@@ -187,6 +187,6 @@ Feature: Create item
     And I save
     Then the attachments are saved
     Examples:
-      | user      | object  |
-      | Mike      | item    |
-      | Pius      | licenses|
+    | object  |
+    | item    |
+    | license|
