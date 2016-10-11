@@ -42,6 +42,7 @@ Feature: Create item
       | IMEI-Number                |
       | Name                       |
       | Note                       |
+      | Attachment                 |
       | - Location -               |
       | Building                   |
       | Room                       |
@@ -131,6 +132,7 @@ Feature: Create item
       | IMEI-Number            |              | Test IMEI number    |
       | Name                   |              | Test name           |
       | Note                   |              | Test note           |
+      | Attachment             | file         | filename.pdf        |
       | Building               | autocomplete | None                |
       | Room                   |              | Test room           |
       | Shelf                  |              | Test shelf          |
@@ -175,3 +177,16 @@ Feature: Create item
     | Facility Management   |
     | IT/Software           |
     | Durch Kunde beschafft |
+
+  Scenario Outline: Create and view attachments
+    Given I am Mike
+    Given I add or edit an <object>
+    Then I add one or more attachments
+    And I can view an attachment when klicking on the filename
+    And I can also remove attachments again
+    And I save
+    Then the attachments are saved
+    Examples:
+    | object  |
+    | item    |
+    | license|
