@@ -25,7 +25,7 @@ Then(/^I can retire this (?:.*) if I give a reason for retiring$/) do
   field.find("option[value='true']").select_option
   field = find("[data-type='field']", text: _('Reason for Retirement'))
   field.find('textarea').set 'test'
-  find('#item-save').click
+  find('#save').click
   step 'I receive a notification of success'
   @item.reload
   expect(@item.retired).to eq Date.today
@@ -39,7 +39,7 @@ Then(/^I cannot retire such a (?:item|license)$/) do
     field.find("option[value='true']").select_option
     field = find("[data-type='field']", text: _('Reason for Retirement'))
     field.find('textarea').set 'test'
-    find('#item-save').click
+    find('#save').click
     step 'I see an error message'
   end
   @item.reload
@@ -73,7 +73,7 @@ Given(/^I don't give any reason for retiring this item$/) do
   field.find("option[value='true']").select_option
   field = find("[data-type='field']", text: _('Reason for Retirement'))
   field.find('textarea').set ''
-  find('#item-save').click
+  find('#save').click
   step 'I see an error message'
 end
 
