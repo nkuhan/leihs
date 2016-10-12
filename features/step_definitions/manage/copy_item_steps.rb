@@ -72,7 +72,7 @@ Then(/^the copied item is saved$/) do
 end
 
 Then(/^an item copy screen is shown$/) do
-  find '#flash'
+  find '#form'
   expect(current_path).to eq manage_copy_item_path(@current_inventory_pool, @item)
 end
 
