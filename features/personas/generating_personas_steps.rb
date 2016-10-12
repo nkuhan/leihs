@@ -223,7 +223,6 @@ Given(/^(\d+) (unsubmitted|submitted|approved) contract reservations?(?: for use
 end
 
 Given(/^all unsubmitted contract reservations are available$/) do
-  binding.pry
   expect(Reservation.unsubmitted.all? {|line| line.available? }).to be true
 end
 
