@@ -237,7 +237,6 @@ end
 Then(/^(a new|no new) supplier is created$/) do |arg1|
   expect(has_content?(_('List of Inventory'))).to be true
   find('#inventory')
-  sleep 3
   expect(Supplier.find_by_name(@new_supplier)).not_to be_nil
   expect(Supplier.where(name: @new_supplier).count).to eq 1
   case arg1
@@ -251,6 +250,7 @@ end
 
 
 Then(/^the (created|edited|copied) item has the (new|existing) supplier$/) do |arg1, arg2|
+  sleep 2
   expect(
     case arg1
       when 'created'
