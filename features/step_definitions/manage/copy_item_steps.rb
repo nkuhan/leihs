@@ -72,7 +72,7 @@ Then(/^the copied item is saved$/) do
 end
 
 Then(/^an item copy screen is shown$/) do
-  expect(find('#model_id input').value).to be == @item.model.name
+  sleep 1
   expect(current_path).to eq manage_copy_item_path(@current_inventory_pool, @item)
 end
 
